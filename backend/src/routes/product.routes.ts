@@ -6,14 +6,14 @@ import { PERMISSIONS } from '../config/constants';
 
 const router = Router();
 
-router.use(authenticate);
+// Public routes - customer menu
+router.get('/', ctrl.getProducts);
+router.get('/:id', ctrl.getProductById);
 
-// Products
-router.get('/', authorize(PERMISSIONS.PRODUCTS.VIEW), ctrl.getProducts);
-router.get('/:id', authorize(PERMISSIONS.PRODUCTS.VIEW), ctrl.getProductById);
-router.post('/', authorize(PERMISSIONS.PRODUCTS.CREATE), ctrl.createProduct);
-router.put('/:id', authorize(PERMISSIONS.PRODUCTS.UPDATE), ctrl.updateProduct);
-router.delete('/:id', authorize(PERMISSIONS.PRODUCTS.DELETE), ctrl.deleteProduct);
-router.patch('/:id/toggle-availability', authorize(PERMISSIONS.PRODUCTS.UPDATE), ctrl.toggleAvailability);
+// Protected routes - admin only
+router.post('/', authenticate, authorize(PERMISSIONS.PRODUCTS.CREATE), ctrl.createProduct);
+router.put('/:id', authenticate, authorize(PERMISSIONS.PRODUCTS.UPDATE), ctrl.updateProduct);
+router.delete('/:id', authenticate, authorize(PERMISSIONS.PRODUCTS.DELETE), ctrl.deleteProduct);
+router.patch('/:id/toggle-availability', authenticate, authorize(PERMISSIONS.PRODUCTS.UPDATE), ctrl.toggleAvailability);
 
 export default router;

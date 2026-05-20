@@ -6,10 +6,12 @@ import { PERMISSIONS } from '../config/constants';
 
 const router = Router();
 
-router.use(authenticate);
-router.get('/', authorize(PERMISSIONS.CATEGORIES.VIEW), ctrl.getCategories);
-router.post('/', authorize(PERMISSIONS.CATEGORIES.CREATE), ctrl.createCategory);
-router.put('/:id', authorize(PERMISSIONS.CATEGORIES.UPDATE), ctrl.updateCategory);
-router.delete('/:id', authorize(PERMISSIONS.CATEGORIES.DELETE), ctrl.deleteCategory);
+// Public route - customer menu
+router.get('/', ctrl.getCategories);
+
+// Protected routes - admin only
+router.post('/', authenticate, authorize(PERMISSIONS.CATEGORIES.CREATE), ctrl.createCategory);
+router.put('/:id', authenticate, authorize(PERMISSIONS.CATEGORIES.UPDATE), ctrl.updateCategory);
+router.delete('/:id', authenticate, authorize(PERMISSIONS.CATEGORIES.DELETE), ctrl.deleteCategory);
 
 export default router;
