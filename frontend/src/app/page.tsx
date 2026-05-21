@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import api from '@/lib/api';
+import Image from 'next/image';
 import { ShoppingCart, MapPin, Clock, Phone, ChevronRight, Star } from 'lucide-react';
 
 export default function Home() {
@@ -30,7 +31,7 @@ export default function Home() {
       <nav className="sticky top-0 z-50 bg-gray-900/95 backdrop-blur border-b border-gray-800">
         <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
           <Link href="/" className="flex items-center gap-2">
-            <span className="text-2xl">🍗</span>
+            <Image src="/logo.png" alt="Aleem Restaurant" width={40} height={40} className="rounded-full" />
             <span className="text-xl font-bold text-red-500">Aleem Restaurant</span>
           </Link>
           <div className="hidden md:flex items-center gap-6 text-sm">
@@ -195,7 +196,7 @@ export default function Home() {
       <footer className="bg-gray-900 border-t border-gray-800 py-10">
         <div className="max-w-7xl mx-auto px-4 grid md:grid-cols-4 gap-8">
           <div>
-            <h3 className="text-lg font-bold text-red-500 mb-3">🍗 Aleem Restaurant</h3>
+            <div className="flex items-center gap-2 mb-3"><Image src="/logo.png" alt="Aleem Restaurant" width={32} height={32} className="rounded-full" /><h3 className="text-lg font-bold text-red-500">Aleem Restaurant</h3></div>
             <p className="text-gray-500 text-sm">Premium fried chicken & burgers delivered fresh to your door.</p>
           </div>
           <div>

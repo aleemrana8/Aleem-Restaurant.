@@ -1,7 +1,9 @@
 import { Router } from 'express';
 import authRoutes from './auth.routes';
+import otpRoutes from './otp.routes';
 import dashboardRoutes from './dashboard.routes';
 import orderRoutes from './order.routes';
+import publicOrderRoutes from './public-order.routes';
 import productRoutes from './product.routes';
 import categoryRoutes from './category.routes';
 import branchRoutes from './branch.routes';
@@ -17,8 +19,10 @@ import aiRoutes from './ai.routes';
 const router = Router();
 
 router.use('/auth', authRoutes);
+router.use('/otp', otpRoutes);
 router.use('/dashboard', dashboardRoutes);
 router.use('/orders', orderRoutes);
+router.use('/public-orders', publicOrderRoutes);
 router.use('/products', productRoutes);
 router.use('/categories', categoryRoutes);
 router.use('/branches', branchRoutes);
